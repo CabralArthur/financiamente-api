@@ -1,14 +1,17 @@
 const express = require('express');
+//Abrindo requisição para utilização
+const cors = require('cors');
 const api = express();
 
+api.use(cors());
 api.use(express.json());
 
 api.post('/calcjs', (request, response) => {
   //Pegando o corpo da requisição (o que for de campo dos formulários)
   const { valIniJS, txJurJS, numPJS } = request.body;
-  let juros = eval(valIniJS * (txJurJS / 100) * numPJS);
-  let montante = eval(Number(valIniJS) + Number(juros));
-  response.json({ montante });
+  let juros = valIniJS * (txJurJS / 100) * numPJS;
+  let montante = valIniJS + juros;
+  response.json({ valIniJS });
 });
 
 api.post('/calcjc', (request, response) => {
