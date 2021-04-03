@@ -9,9 +9,9 @@ api.use(express.json());
 api.post('/calcjs', (request, response) => {
   //Pegando o corpo da requisição (o que for de campo dos formulários)
   const { valIniJS, txJurJS, numPJS } = request.body;
-  let juros = valIniJS * (txJurJS / 100) * numPJS;
-  let montante = valIniJS + juros;
-  response.json({ valIniJS });
+  let juros = Number(valIniJS) * (Number(txJurJS) / 100) * Number(numPJS);
+  let montante = Number(valIniJS) + Number(juros);
+  response.json({ montante });
 });
 
 api.post('/calcjc', (request, response) => {
