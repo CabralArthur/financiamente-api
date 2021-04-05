@@ -32,12 +32,12 @@ api.post('/calcjc', (request, response) => {
 api.post('/calcdesc', (request, response) => {
   //Pegando o corpo da requisição (o que for de campo dos formulários)
   const { valDesej, Desc } = request.body;
-  let desc = eval(valDesej * (Desc / 100));
-  let montante = eval(Number(valDesej) - Number(desc));
+  let desc = Number(valDesej) * (Number(Desc) / 100);
+  let montante = Number(valDesej) - Number(desc);
   response.json({ montante });
 });
 
-//API será "ouvida" na porta 3000 do navegador
+//API será "ouvida" na porta do navegador
 const port = process.env.PORT || 8080;
 
 api.listen(port)
