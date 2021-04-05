@@ -38,4 +38,6 @@ api.post('/calcdesc', (request, response) => {
 });
 
 //API será "ouvida" na porta 3000 do navegador
-api.listen(3000);
+const port = process.env.PORT || 8080;
+
+api.listen(port)
