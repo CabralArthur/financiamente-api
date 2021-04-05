@@ -32,8 +32,8 @@ api.post('/calcjc', (request, response) => {
 api.post('/calcdesc', (request, response) => {
   //Pegando o corpo da requisição (o que for de campo dos formulários)
   const { valDesej, Desc } = request.body;
-  let desc = Number(valDesej) * (Number(Desc) / 100);
-  let montante = Number(valDesej) - Number(desc);
+  let desc = eval(Number(valDesej) * (Number(Desc) / 100));
+  let montante = eval(Number(valDesej) - Number(desc));
   response.json({ montante });
 });
 
