@@ -12,7 +12,7 @@ api.use(express.json());
 //A primeira rota, para o cálculo de Juros simples
 api.post('/calcjs', (request, response) => {
   //Pegando o corpo da requisição (o que for de campo dos formulários)
-  const { valIniJS, txJurJS, numPJS } = request.params;
+  const { valIniJS, txJurJS, numPJS } = request.body;
   let juros = Number(valIniJS) * (Number(txJurJS) / 100) * Number(numPJS);
   let montante = Number(valIniJS) + Number(juros);
   response.json({ montante });
@@ -21,7 +21,7 @@ api.post('/calcjs', (request, response) => {
 //A segunda, para cálculo de juros compostos
 api.post('/calcjc', (request, response) => {
   //Pegando o corpo da requisição (o que for de campo dos formulários)
-  const { valIniJC, txJurJC, numPJC } = request.params;
+  const { valIniJC, txJurJC, numPJC } = request.body;
   let montante = eval(
     Number(valIniJC) * Math.pow(1 + Number(txJurJC / 100), numPJC),
   );
@@ -31,7 +31,7 @@ api.post('/calcjc', (request, response) => {
 //A terceira para cálculo de descontos
 api.post('/calcdesc', (request, response) => {
   //Pegando o corpo da requisição (o que for de campo dos formulários)
-  const { valDesej, Desc } = request.params;
+  const { valDesej, Desc } = request.body;
   let desc = eval(valDesej * (Desc / 100));
   let montante = eval(Number(valDesej) - Number(desc));
   response.json({ montante });
